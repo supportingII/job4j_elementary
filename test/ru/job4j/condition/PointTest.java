@@ -7,6 +7,33 @@ import static org.junit.Assert.*;
 
 public class PointTest {
 
+    @Test
+    public void whenNotZero() {
+        Point firstP = new Point(15, 3);
+        Point secondP = new Point(12, 5);
+        double expect = 3.605551275463989;
+        double out = firstP.distance(secondP);
+        Assert.assertEquals(expect, out, 0.001);
+    }
+
+    @Test
+    public void whenX1Zero() {
+        Point firstP = new Point(0, 3);
+        Point secondP = new Point(12, 5);
+        double expect = 12.165525060596439;
+        double out = firstP.distance(secondP);
+        Assert.assertEquals(expect, out, 0.001);
+    }
+
+    @Test
+    public void whenDistance3d() {
+        Point firstP = new Point(5, 10, 15);
+        Point secondP = new Point(10, 5, 6);
+        double expect = 11.445523142259598;
+        double out = firstP.distance3d(secondP);
+        Assert.assertEquals(expect, out, 0.001);
+    }
+
     /*@Test
     public void whenNotZero() {
         int x1, y1, x2, y2;
