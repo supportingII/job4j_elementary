@@ -10,7 +10,7 @@ public class Matches {
         String[] players = initializingPlayers();
         System.out.println("Добро пожаловать в игру 11 спичек!");
 
-        while (true) {
+        while (maxMatch > 0) {
             System.out.println("- - - - - - - - - - - - - - - - -");
             System.out.println("Ходит " + players[numberOfPlayers]);
 
@@ -23,16 +23,21 @@ public class Matches {
 
             maxMatch -= select;
 
-            if (maxMatch <= 0) {
-                System.out.println("Победил " + players[numberOfPlayers]);
-                break;
-            } else {
+            if (maxMatch > 0) {
                 System.out.println("Спичек осталось - " + maxMatch);
+                numberOfPlayers = numberOfPlayers == 0 ? 1 : 0;
             }
 
-            numberOfPlayers = numberOfPlayers == 0 ? 1 : 0;
+            /*if (maxMatch <= 0) break;
+
+            System.out.println("Спичек осталось - " + maxMatch);
+
+            numberOfPlayers = numberOfPlayers == 0 ? 1 : 0;*/
 
         }
+
+        System.out.println("Победил " + players[numberOfPlayers]);
+
     }
 
     public static String[] initializingPlayers() {
