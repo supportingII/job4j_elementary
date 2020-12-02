@@ -30,4 +30,13 @@ public class Item {
     public void setName(String name) {
         this.name = name;
     }
+
+    @Override
+    public String toString() {
+
+        return "----------------" + System.lineSeparator()
+                + "id: " + id + System.lineSeparator()
+                + "name: " + name;
+
+    }
 }

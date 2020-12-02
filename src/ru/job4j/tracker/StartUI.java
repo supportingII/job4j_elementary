@@ -20,7 +20,7 @@ public class StartUI {
             } else if (numberMenu == 1) {
                 System.out.println("--- All items ---");
                 for (Item item : tracker.findAll()) {
-                    showItem(item);
+                    System.out.println(item);
                 }
             } else if (numberMenu == 2) {
                 System.out.println("--- Replace item ---");
@@ -47,7 +47,7 @@ public class StartUI {
                 if (item == null) {
                     System.out.println("Item not found.");
                 } else {
-                    showItem(item);
+                    System.out.println(item);
                 }
             } else if (numberMenu == 5) {
                 System.out.println("--- Find item by name ---");
@@ -57,7 +57,7 @@ public class StartUI {
                     System.out.println("Item not found.");
                 } else {
                     for (Item item : itemList) {
-                        showItem(item);
+                        System.out.println(item);
                     }
                 }
             } else if (numberMenu == 6) {
@@ -79,11 +79,11 @@ public class StartUI {
         return scanner.nextLine();
     }
 
-    private void showItem(Item item) {
+    /*private void showItem(Item item) {
         System.out.println("----------------");
         System.out.println("id: " + item.getId());
         System.out.println("name: " + item.getName());
-    }
+    }*/
 
     private void showMenu() {
         System.out.println("Menu.");
