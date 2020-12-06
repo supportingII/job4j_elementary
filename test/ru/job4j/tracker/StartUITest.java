@@ -8,6 +8,51 @@ import static org.junit.Assert.*;
 public class StartUITest {
 
     @Test
+    public void whenCreateItem() {
+        Input in = new StubInput(
+                new String[] {"0", "Item name", "1"}
+        );
+        Tracker tracker = new Tracker();
+        UserAction[] actions = {
+                new CreateNewItem(),
+                new ExitTracker()
+        };
+        new StartUI().init(in, tracker, actions);
+        assertThat(tracker.findAll()[0].getName(), is("Item name"));
+    }
+
+    @Test
+    public void whenReplaceItem() {
+        Tracker tracker = new Tracker();
+        Item item = tracker.add(new Item("Replaced item"));
+        String replacedName = "New item name";
+        Input in = new StubInput(
+                new String[] {"0", String.valueOf(item.getId()), replacedName, "1"}
+        );
+        UserAction[] actions = {
+                new ReplaceItem(),
+                new ExitTracker()
+        };
+        new StartUI().init(in, tracker, actions);
+        assertThat(tracker.findById(item.getId()).getName(), is(replacedName));
+    }
+
+    @Test
+    public void whenDeleteItem() {
+        Tracker tracker = new Tracker();
+        Item item = tracker.add(new Item("Deleted item"));
+        Input in = new StubInput(
+                new String[] {"0", String.valueOf(item.getId()), "1"}
+        );
+        UserAction[] actions = {
+                new DeleteItem(),
+                new ExitTracker()
+        };
+        new StartUI().init(in, tracker, actions);
+        assertThat(tracker.findById(item.getId()), is(IsNull.nullValue()));
+    }
+
+    /*@Test
     public void whenAddItem() {
         String[] answer = {"Test"};
         Input input = new StubInput(answer);
@@ -43,6 +88,5 @@ public class StartUITest {
         StartUI.deleteItem(new StubInput(answer), tracker);
         Item replaced = tracker.findById(item.getId());
         assertThat(replaced, is(IsNull.nullValue()));
-
-    }
+    }*/
 }
